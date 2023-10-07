@@ -744,14 +744,6 @@ class Node:
     nextZ: Optional["Node"]
     steiner: bool
 
-    def __str__(self):
-        return (
-            f"i={self.i} x={self.x} y={self.y} "
-            f"prev={bool(self.prev)} next={bool(self.next)} "
-            f"z={self.z} prevZ={bool(self.prevZ)} nextZ={bool(self.nextZ)} "
-            f"steiner={self.steiner}"
-        )
-
     def __init__(self, i, x, y):
         # vertex index in coordinates array
         self.i = i

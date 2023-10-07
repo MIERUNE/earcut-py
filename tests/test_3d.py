@@ -1,15 +1,12 @@
-import matplotlib.pylab as plt
 import numpy as np
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-from seaborn import color_palette
+import pytest
 
 from earcut import earcut
 from earcut.utils_3d import project3d_to_2d
 
-colors = color_palette("pastel")
 
-
-def load_polygons() -> list[list[np.ndarray]]:
+@pytest.fixture
+def polygons() -> list[list[np.ndarray]]:
     polygons = [
         [
             np.array(
@@ -131,51 +128,21 @@ def load_polygons() -> list[list[np.ndarray]]:
     return polygons
 
 
-def triangulate(polygon: list[np.ndarray]) -> np.ndarray:
+def test_triangulate(polygons):
     # Flatten
-    holeIndices = []
-    if len(polygon) > 1:
-        hi = polygon[0].shape[0]
-        for ring in polygon[1:]:
-            holeIndices.append(hi)
-            hi += ring.shape[0]
-    vertices = np.vstack(polygon)
-    flatten_vertices = vertices.flatten()
+    for polygon in polygons:
+        holeIndices = []
+        if len(polygon) > 1:
+            hi = polygon[0].shape[0]
+            for ring in polygon[1:]:
+                holeIndices.append(hi)
+                hi += ring.shape[0]
+        vertices = np.vstack(polygon)
+        flatten_vertices = vertices.flatten()
 
-    # Earcut
-    flatten_vertices = project3d_to_2d(flatten_vertices, len(polygon[0]))
-    if flatten_vertices is not None:
-        if cut := earcut(flatten_vertices, holeIndices, dim=2):
-            cut = np.asarray(cut).reshape(-1, 3)
-            return vertices[cut]
-
-    return np.empty((0, 3, 3))
-
-
-# Plot
-fig = plt.figure()
-ax = fig.add_subplot(111, projection="3d")
-# ax.view_init(90, -90, 0)
-ax.set_xlim(0, 7)
-ax.set_ylim(0, 7)
-ax.set_zlim(-3, 4)
-ax.set_box_aspect((1, 1, 1))
-
-ci = 0
-polygons = load_polygons()
-for poly in polygons:
-    triangles = triangulate(poly)
-    print(triangles)
-    poly = Poly3DCollection(
-        triangles,
-        alpha=0.8,
-        edgecolor="k",
-        zsort="max",
-        facecolor=colors[ci],
-        linewidth=1,
-    )
-    ax.add_collection3d(poly)
-    ci += 1
-
-fig.tight_layout()
-plt.savefig("demo.png", transparent=True, dpi=300)
+        # Earcut
+        flatten_vertices = project3d_to_2d(flatten_vertices, len(polygon[0]))
+        assert flatten_vertices is not None
+        if triangles := earcut(flatten_vertices, holeIndices, dim=2):
+            triangles = np.asarray(triangles).reshape(-1, 3)
+            assert vertices[triangles].shape == (len(triangles), 3, 3)

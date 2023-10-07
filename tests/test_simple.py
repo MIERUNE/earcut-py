@@ -1,4 +1,11 @@
-from earcut import deviation, earcut
+from earcut import deviation, earcut, flatten
+
+
+def test_flatten():
+    data, holeIndices, dim = flatten([[[0, 0], [100, 0], [100, 100], [0, 100]]])
+    triangles = earcut(data, holeIndices, dim)
+    assert len(triangles) == 2 * 3
+    deviation(data, holeIndices, dim, triangles)
 
 
 def test_empty():
