@@ -324,9 +324,10 @@ def eliminateHoles(data, holeIndices, outerNode, dim):
         start = holeIndices[i] * dim
         end = holeIndices[i + 1] * dim if i < _len - 1 else len(data)
         lst = linkedList(data, start, end, dim, False)
-        if lst == lst.next:
-            lst.steiner = True
-        queue.append(getLeftmost(lst))
+        if lst:
+            if lst == lst.next:
+                lst.steiner = True
+            queue.append(getLeftmost(lst))
 
     queue.sort(key=lambda i: i.x)
 
