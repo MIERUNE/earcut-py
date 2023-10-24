@@ -17,6 +17,8 @@ ruff = "^0.0.292"
 black = "^23.9.1"
 pyright = "^1.1.329"
 numpy = "^1.25.2"
+matplotlib = "^3.8.0"
+seaborn = "^0.13.0"
 
 [tool.ruff]
 ignore = ["E501"]

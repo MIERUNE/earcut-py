@@ -165,7 +165,6 @@ ci = 0
 polygons = load_polygons()
 for poly in polygons:
     triangles = triangulate(poly)
-    print(triangles)
     poly = Poly3DCollection(
         triangles,
         alpha=0.8,
