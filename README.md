@@ -14,3 +14,7 @@ A pure Python port of the [earcut](https://github.com/mapbox/earcut) polygon tri
 </p>
 
 This project is a fork of [joshuaskelly/earcut-python](https://github.com/joshuaskelly/earcut-python).
+
+## Usage
+
+TODO
