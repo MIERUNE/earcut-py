@@ -11,13 +11,13 @@ packages = [{include = "earcut"}]
 python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
-pytest-cov = "^4.1.0"
-pytest = "^7.4.3"
-ruff = "^0.1.6"
-pyright = "^1.1.336"
-numpy = "^1.26.2"
-matplotlib = "^3.8.2"
-seaborn = "^0.13.0"
+pytest-cov = "^4.1"
+pytest = "^7.4"
+ruff = "^0.1"
+pyright = "^1.1"
+numpy = "^1.26"
+matplotlib = "^3.8"
+seaborn = "^0.13"
 
 [tool.ruff]
 ignore = ["E501"]
