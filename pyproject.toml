@@ -2,7 +2,10 @@
 name = "earcut-py"
 version = "0.3.0"
 description = "A pure Python port of the Earcut polygon triangulation library."
-authors = ["MIERUNE Inc. <info@mierune.co.jp>"]
+authors = [
+    "MIERUNE Inc. <info@mierune.co.jp>",
+    "Taku Fukada <naninunenor@gmail.com>",
+]
 license = "ISC"
 readme = "README.md"
 packages = [{include = "earcut"}]
