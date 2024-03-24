@@ -2,7 +2,6 @@ import json
 from itertools import accumulate
 
 import pytest
-
 from earcut import deviation, earcut
 
 
