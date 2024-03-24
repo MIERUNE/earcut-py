@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  Release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rye
+        run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+      - name: Build
+        run: |
+          source "$HOME/.rye/env"
+          rye build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

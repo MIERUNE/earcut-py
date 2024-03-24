@@ -1,6 +1,6 @@
 [project]
 name = "earcut-py"
-version = "0.3.0"
+version = "0.3.1"
 description = "A pure Python port of the Earcut polygon triangulation library."
 authors = [
     { name = "MIERUNE Inc.", email = "info@mierune.co.jp" },
