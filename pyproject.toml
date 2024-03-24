@@ -1,33 +1,39 @@
-[tool.poetry]
+[project]
 name = "earcut-py"
 version = "0.3.0"
 description = "A pure Python port of the Earcut polygon triangulation library."
 authors = [
-    "MIERUNE Inc. <info@mierune.co.jp>",
-    "Taku Fukada <naninunenor@gmail.com>",
+    { name = "MIERUNE Inc.", email = "info@mierune.co.jp" },
+    { name = "Taku Fukada", email = "naninunenor@gmail.com" },
 ]
-license = "ISC"
+dependencies = [
+]
 readme = "README.md"
-packages = [{include = "earcut"}]
-
-[tool.poetry.dependencies]
-python = "^3.9"
-
-[tool.poetry.group.dev.dependencies]
-pytest-cov = "^4.1"
-pytest = ">=7.4,<9.0"
-ruff = ">=0.1,<0.4"
-pyright = "^1.1"
-numpy = "^1.26"
-matplotlib = "^3.8"
-seaborn = "^0.13"
-
-[tool.ruff]
-ignore = ["E501"]
+requires-python = ">= 3.9"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.1.1",
+    "pytest-cov>=4.1.0",
+    "pyright>=1.1.355",
+    "numpy>=1.24.4",
+    "matplotlib>=3.7.5",
+    "seaborn>=0.13.2",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/earcut"]
+
+[tool.ruff.lint]
+ignore = ["E501"]
 
 [tool.coverage.run]
 source = ['earcut']
