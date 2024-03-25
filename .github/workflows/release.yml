@@ -16,7 +16,7 @@ jobs:
       - name: Install Rye
         run: |
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-          echo "$HOME/.rye/env" >> $GITHUB_PATH
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
 
       - name: Build
         run: rye build
