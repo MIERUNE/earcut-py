@@ -18,3 +18,8 @@ This project is a fork of [joshuaskelly/earcut-python](https://github.com/joshua
 ## Usage
 
 TODO
+
+## Author
+
+Taku Fukada ([@ciscorn](https://github.com/ciscorn))
+
